@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>My Bookings</h2>
+
+{% for booking in bookings %}
+
+<div>
+
+<h3>{{ booking.ticket.event.title }}</h3>
+
+<p>Ticket: {{ booking.ticket.name }}</p>
+
+<p>Quantity: {{ booking.quantity }}</p>
+
+<p>Total Paid: ₹{{ booking.total_price }}</p>
+
+<p>Status: {{ booking.status }}</p>
+
+</div>
+
+{% endfor %}
+<a href="/payments/pay/{{ booking.id }}/">
+Pay Now
+</a>
+
+{% endblock %}

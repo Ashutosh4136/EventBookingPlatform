@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>My Events</h2>
+
+{% for event in events %}
+
+<div>
+
+<h3>{{ event.title }}</h3>
+
+<p>{{ event.start_date }}</p>
+
+<p>{{ event.location }}</p>
+
+</div>
+
+{% endfor %}
+
+{% endblock %}

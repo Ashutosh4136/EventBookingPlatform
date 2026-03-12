@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Tickets for {{ event.title }}</h2>
+
+{% for ticket in tickets %}
+
+<div>
+
+<h3>{{ ticket.name }}</h3>
+
+<p>Type: {{ ticket.ticket_type }}</p>
+
+<p>Price: ₹{{ ticket.price }}</p>
+
+<p>Available: {{ ticket.quantity }}</p>
+
+</div>
+<a href="/bookings/book/{{ ticket.id }}/">
+Book Ticket
+</a>
+{% endfor %}
+
+{% endblock %}

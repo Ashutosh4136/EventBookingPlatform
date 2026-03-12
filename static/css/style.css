@@ -1,0 +1,90 @@
+body{
+font-family: 'Segoe UI', sans-serif;
+background:#f5f7fb;
+}
+
+
+/* HERO */
+
+.hero-section{
+background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
+url("https://images.unsplash.com/photo-1501281668745-f7f57925c3b4");
+background-size:cover;
+background-position:center;
+padding:120px 0;
+}
+
+
+/* CARDS */
+
+.card{
+border:none;
+border-radius:10px;
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+box-shadow:0 10px 20px rgba(0,0,0,0.1);
+}
+
+
+/* BUTTON */
+
+.btn-primary{
+background:#6c5ce7;
+border:none;
+}
+
+.btn-primary:hover{
+background:#5649c9;
+}
+
+
+/* FOOTER */
+
+.footer{
+background:#111;
+color:white;
+padding:20px;
+margin-top:50px;
+}
+
+.social-icons i{
+margin:0 10px;
+cursor:pointer;
+font-size:20px;
+}
+
+.social-icons i:hover{
+color:#6c5ce7;
+}
+
+
+/* EVENT IMAGE */
+
+.event-img{
+height:200px;
+object-fit:cover;
+border-radius:10px;
+}
+
+
+/* FORM */
+
+form{
+background:white;
+padding:25px;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,0.05);
+}
+
+
+/* REVIEW SECTION */
+
+.review-box{
+background:white;
+padding:15px;
+border-radius:8px;
+margin-bottom:10px;
+}

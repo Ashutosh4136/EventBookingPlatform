@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>{{ event.title }}</h2>
+
+<img src="{{ event.image.url }}" width="400">
+
+<p>{{ event.description }}</p>
+
+<p>Location: {{ event.location }}</p>
+
+<p>Start: {{ event.start_date }}</p>
+
+<p>End: {{ event.end_date }}</p>
+
+<p>Capacity: {{ event.capacity }}</p>
+<a href="{% url 'book_ticket' event.id %}" class="btn btn-success">
+Book Ticket
+</a>
+<h3>Reviews</h3>
+
+{% for review in event.reviews.all %}
+
+<div>
+
+<strong>{{ review.user }}</strong>
+
+<p>Rating: ⭐ {{ review.rating }}/5</p>
+
+<p>{{ review.comment }}</p>
+
+</div>
+
+{% empty %}
+
+<p>No reviews yet.</p>
+
+{% endfor %}
+
+<a href="/reviews/add/{{ event.id }}/">
+Add Review
+</a>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="card shadow-lg p-4">
+
+        <h2 class="mb-4">💳 Payment</h2>
+
+        <hr>
+
+        <h4>Event Details</h4>
+
+        <p><strong>Event:</strong> {{ event.title }}</p>
+        <p><strong>Location:</strong> {{ event.location }}</p>
+        <p><strong>Date:</strong> {{ booking.date }}</p>
+
+        <hr>
+
+        <h4>Booking Details</h4>
+
+        <p><strong>Number of Tickets:</strong> {{ booking.persons }}</p>
+        <p><strong>Food Included:</strong> 
+            {% if booking.food %}
+                Yes
+            {% else %}
+                No
+            {% endif %}
+        </p>
+
+        <hr>
+
+        <h3 class="text-success">
+            Total Amount: ₹{{ booking.total_price }}
+        </h3>
+
+        <br>
+
+        <button class="btn btn-success btn-lg">
+            Pay Now
+        </button>
+
+    </div>
+
+</div>
+
+{% endblock %}
