@@ -13,6 +13,8 @@
 <p>Start: {{ event.start_date }}</p>
 
 <p>End: {{ event.end_date }}</p>
+<p >Ticket Price:₹{{ event.price }}
+</p>
 
 <p>Capacity: {{ event.capacity }}</p>
 <a href="{% url 'book_ticket' event.id %}" class="btn btn-success">
