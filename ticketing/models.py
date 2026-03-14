@@ -28,6 +28,16 @@ class Ticket(models.Model):
     sales_end = models.DateTimeField()
 
     created_at = models.DateTimeField(auto_now_add=True)
+    total_quantity = models.IntegerField(default=0)
+
+    remaining_quantity = models.IntegerField(default=0)
+
+    def save(self, *args, **kwargs):
+
+        if not self.pk:
+            self.remaining_quantity = self.total_quantity
+
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.name} - {self.event.title}"
