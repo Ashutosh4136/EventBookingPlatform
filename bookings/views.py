@@ -15,6 +15,10 @@ def book_ticket(request, event_id):
 
     ticket = get_object_or_404(Event, id=event_id)
 
+    # ✅ check ticket availability
+    if ticket.remaining_quantity <= 0:
+        return render(request, 'bookings/sold_out.html')
+
     if request.method == 'POST':
 
         form = BookingForm(request.POST)
@@ -36,10 +40,15 @@ def book_ticket(request, event_id):
 
             # calculate price
             booking.total_price = ticket.price * booking.persons
+
             # booking status
             booking.status = 'confirmed'
 
             booking.save()
+
+            # ✅ reduce available tickets
+            ticket.remaining_quantity -= booking.persons
+            ticket.save()
 
             return redirect('make_payment', booking_id=booking.id)
 
@@ -48,8 +57,8 @@ def book_ticket(request, event_id):
 
     return render(request, 'bookings/book_ticket.html', {
         'form': form,
-        'ticket': ticket})
-
+        'ticket': ticket
+})
 @login_required
 def my_bookings(request):
 
