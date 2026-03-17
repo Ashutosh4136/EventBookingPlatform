@@ -17,9 +17,26 @@
 </p>
 
 <p>Capacity: {{ event.capacity }}</p>
-<a href="{% url 'book_ticket' event.id %}" class="btn btn-success">
-Book Ticket
-</a>
+<h4>DEBUG START</h4>
+
+<p>Total Tickets: {{ event.tickets.all.count }}</p>
+
+{% for ticket in event.tickets.all %}
+
+    <p style="color:green;">INSIDE LOOP ✅</p>
+
+    <p>Price: {{ ticket.price }}</p>
+    <p>Remaining: {{ ticket.remaining_quantity }}</p>
+
+    <a href="{% url 'book_ticket' event.id%}" class="btn btn-success">Book Ticket</a>
+
+{% empty %}
+
+    <p style="color:red;">NO TICKETS IN TEMPLATE ❌</p>
+
+{% endfor %}
+
+<h4>DEBUG END</h4>
 <h3>Reviews</h3>
 
 {% for review in event.reviews.all %}

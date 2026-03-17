@@ -15,43 +15,17 @@
                 </div>
 
 
-                <!-- Event Date Range -->
-                <p>
-                    📅 
-                    {{ ticket.start_date }} 
-                    → 
-                    {{ ticket.end_date }}
-                </p>
-
-                <div class="card-body">
-                      
-                        <!-- Summary Box -->
-                        <div class="p-3 bg-light rounded mb-3">
-                            <h6>Booking Summary</h6>
-
-                            <p class="mb-1">
-                                Event: <strong>{{ ticket.title }}</strong>
-                            </p>
-
-                            <p class="mb-1">
-                                Organizer: <strong>{{ ticekt.organizer }}</strong>
-                            </p>
-
-                            <p class="mb-0 text-muted">
-                                Please review your booking before confirming.
-                            </p>
-                        </div>
-
+        
                         <!-- Button -->
                        <form method="POST">
-    {% csrf_token %}
+                        {% csrf_token %}
 
-    {{ form.as_p }}
+                        {{ form.as_p }}
 
-    <button type="submit" class="btn btn-success">
-        Confirm Booking
-    </button>
-</form>
+                        <button type="submit" class="btn btn-success">
+                            Confirm Booking
+                        </button>
+                    </form>
                         </div>
 
                     </form>
