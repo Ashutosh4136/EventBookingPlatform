@@ -29,15 +29,11 @@ class Ticket(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
     total_quantity = models.IntegerField(default=0)
-
-    remaining_quantity = models.IntegerField(default=0)
-
-    def save(self, *args, **kwargs):
-
-        if not self.pk:
-            self.remaining_quantity = self.total_quantity
-
-        super().save(*args, **kwargs)
-
     def __str__(self):
         return f"{self.name} - {self.event.title}"
+    
+    @property
+    def remaining_quantity(self):
+        from bookings.models import Booking
+        booked = Booking.objects.filter(ticket=self).count()
+        return self.total_quantity - booked

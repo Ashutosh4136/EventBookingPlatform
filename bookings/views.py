@@ -13,9 +13,9 @@ from events.models import Event
 @login_required
 def book_ticket(request, event_id):
 
-    ticket = get_object_or_404(Event, id=event_id)
+    ticket = get_object_or_404(Ticket, event_id=event_id)
 
-    # ✅ check ticket availability
+    # ✅ check availability
     if ticket.remaining_quantity <= 0:
         return render(request, 'bookings/sold_out.html')
 
@@ -27,28 +27,19 @@ def book_ticket(request, event_id):
 
             booking = form.save(commit=False)
 
-            # assign logged in user
             booking.user = request.user
-
-            # assign event
             booking.ticket = ticket
 
-            # get values from form
             booking.date = form.cleaned_data['date']
             booking.persons = form.cleaned_data['persons']
             booking.food = form.cleaned_data['food']
 
-            # calculate price
+            # ✅ calculate price
             booking.total_price = ticket.price * booking.persons
 
-            # booking status
             booking.status = 'confirmed'
 
             booking.save()
-
-            # ✅ reduce available tickets
-            ticket.remaining_quantity -= booking.persons
-            ticket.save()
 
             return redirect('make_payment', booking_id=booking.id)
 
@@ -58,7 +49,7 @@ def book_ticket(request, event_id):
     return render(request, 'bookings/book_ticket.html', {
         'form': form,
         'ticket': ticket
-})
+    })
 @login_required
 def my_bookings(request):
 
