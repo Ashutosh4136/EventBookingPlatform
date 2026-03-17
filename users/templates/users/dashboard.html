@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+<h2 class="mb-4">Organizer Dashboard</h2>
+
+<!-- STATS -->
+
+<div class="row mb-4">
+
+<div class="col-md-4">
+<div class="card text-center p-3 shadow">
+<h5>Total Events</h5>
+<h2>{{ total_events }}</h2>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="card text-center p-3 shadow">
+<h5>Tickets Sold</h5>
+<h2>{{ total_tickets_sold }}</h2>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="card text-center p-3 shadow">
+<h5>Revenue</h5>
+<h2>₹{{ total_revenue }}</h2>
+</div>
+</div>
+
+</div>
+
+
+<!-- ACTION BUTTON -->
+
+<a href="/events/create/" class="btn btn-primary mb-4">
++ Create New Event
+</a>
+
+
+<!-- EVENTS TABLE -->
+
+<div class="card p-4 shadow">
+
+<h4>My Events</h4>
+
+{% if events %}
+
+<table class="table">
+
+<tr>
+<th>Title</th>
+<th>Date</th>
+<th>Location</th>
+<th>Actions</th>
+</tr>
+
+{% for event in events %}
+
+<tr>
+
+<td>{{ event.title }}</td>
+<td>{{ event.date }}</td>
+<td>{{ event.location }}</td>
+
+<td>
+
+<a href="/events/{{ event.id }}/" class="btn btn-sm btn-info">
+View
+</a>
+
+<a href="/tickets/add/{{ event.id }}/" class="btn btn-sm btn-warning">
+Add Ticket
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% else %}
+
+<p>No events created yet.</p>
+
+{% endif %}
+
+</div>
+
+</div>
+
+{% endblock %}

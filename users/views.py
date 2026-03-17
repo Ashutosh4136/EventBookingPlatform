@@ -87,3 +87,33 @@ def edit_profile(request):
     }
 
     return render(request, 'users/edit_profile.html', context)
+
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from events.models import Event
+from bookings.models import Booking
+
+
+@login_required
+def organizer_dashboard(request):
+
+    events = Event.objects.filter(organizer=request.user)
+
+    total_events = events.count()
+
+    bookings = Booking.objects.filter(ticket__event__organizer=request.user)
+
+    total_tickets_sold = bookings.count()
+
+    total_revenue = sum(
+        booking.ticket.price for booking in bookings if booking.status == "Confirmed"
+    )
+
+    context = {
+        'events': events,
+        'total_events': total_events,
+        'total_tickets_sold': total_tickets_sold,
+        'total_revenue': total_revenue
+    }
+
+    return render(request, 'users/dashboard.html', context)
