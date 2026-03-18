@@ -17,7 +17,7 @@ def book_ticket(request, event_id):
 
     # ✅ check availability
     if ticket.remaining_quantity <= 0:
-        return render(request, 'bookings/sold_out.html')
+        return render(request, 'events/sold_out.html')
 
     if request.method == 'POST':
 
