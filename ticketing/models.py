@@ -22,11 +22,6 @@ class Ticket(models.Model):
     price = models.DecimalField(max_digits=8, decimal_places=2, default=0)
 
     quantity = models.IntegerField()
-
-    sales_start = models.DateTimeField()
-
-    sales_end = models.DateTimeField()
-
     created_at = models.DateTimeField(auto_now_add=True)
     total_quantity = models.IntegerField(default=0)
     def __str__(self):

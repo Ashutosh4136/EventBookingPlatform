@@ -8,10 +8,14 @@ class TicketForm(forms.ModelForm):
         model = Ticket
 
         fields = [
-            'name',
+            # 'name',
             'ticket_type',
             'price',
             'quantity',
-            'sales_start',
-            'sales_end'
+            # 'total_quantity'
         ]
+        widgets = {
+                'name': forms.TextInput(attrs={'class': 'form-control'}),
+                'price': forms.NumberInput(attrs={'class': 'form-control'}),
+                'total_quantity': forms.NumberInput(attrs={'class': 'form-control'}),
+            }
