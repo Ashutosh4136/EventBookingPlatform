@@ -34,7 +34,7 @@ def create_event(request):
             event.organizer = request.user
             event.save()
 
-            return redirect('event_list')
+            return redirect('add_ticket', event_id=event.id)
 
     else:
         form = EventForm()
